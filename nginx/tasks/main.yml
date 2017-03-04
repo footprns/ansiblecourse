@@ -1,0 +1,14 @@
+---
+- name: Install nginx
+  package: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - nginx
+
+- name: Create website directory
+  file: path=/var/www/{{ site_name }} state=directory mode=0755
+
+- name: Create main nginx config file
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf backup=yes
+  notify:
+    - restart nginx

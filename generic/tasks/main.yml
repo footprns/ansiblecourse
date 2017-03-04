@@ -1,0 +1,9 @@
+---
+# tasks file for generic
+- name: Install pyton
+  raw: test -e /usr/bin/python || yum -y install python
+
+- name: Fancy way of doing authorization
+  authorized_key: user=root
+                  exclusive=no
+                  key={{ lookup('file','~/.ssh/id_rsa.pub')}}

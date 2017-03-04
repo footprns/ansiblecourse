@@ -1,0 +1,10 @@
+---
+- hosts: allservers
+  gather_facts: TRUE
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - generic
+    - nginx
